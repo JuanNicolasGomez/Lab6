@@ -13,9 +13,6 @@
         <typeAlias type='edu.eci.pdsw.samples.entities.Eps' alias='Eps'/>
     </typeAliases>
     
-    <typeAliases>
-
-    </typeAliases>
                          
     <environments default="development">
         <environment id="development">
@@ -31,7 +28,8 @@
         
     <mappers>
         <mapper resource="mappers/PacienteMapper.xml"></mapper>       
-        <mapper resource="mappers/EpsMapper.xml"></mapper>         
+        <mapper resource="mappers/EpsMapper.xml"></mapper>  
+        <mapper resource="mappers/ConsultaMapper.xml"></mapper>      
     </mappers> 
         
         

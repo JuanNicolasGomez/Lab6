@@ -21,24 +21,31 @@
                 p.fecha_nacimiento,
 
 
-                e.nombre,
-                e.nit,
+                e.nombre as EPS_NOMBRE,
+                e.nit as EPS_NIT,
 
-                c.idCONSULTAS,
-                c.fecha_y_hora,
-                c.resumen,
-                c.costo
+                c.idCONSULTAS as CON_ID,
+                c.fecha_y_hora as CON_FECHA,
+                c.resumen as CON_RESUMEN,
+                c.costo as CON_COSTO
 
 
                 FROM  CM_PACIENTES as p left join CM_CONSULTAS as c on p.id=c.PACIENTES_id left join CM_EPS as e on p.eps_nit=e.nit
     </select>
     <resultMap type='Paciente' id='PacienteResult'>
-        <id property='propiedad1' column='COLUMNA1'/>
-        <result property='propiedad2' column='COLUMNA2'/>
-        <result property='propiedad3' column='COLUMNA3'/>  
-        <collection property='propiedad4' ofType='DetalleUno'></collection>
-        <association property="propiedad5" javaType="DetalleDos"></association>      
+        <id property='id' column='id'/>
+        <id property='tipoid' column='tipo_id'/>
+        <result property='nombre' column='nombre'/>
+        <result property='fechaNacimiento' column='fecha_nacimiento'/>  
+        <collection property='consultas' ofType='Consulta'resultmap = 'ConsultaResult' columnPrefix ='CON_'></collection>
+        <association property="eps" javaType="Eps"></association>      
     </resultMap>
+    
+    
+    
+    
+    
+    
     
 
                 

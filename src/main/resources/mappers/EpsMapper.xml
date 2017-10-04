@@ -4,6 +4,9 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="edu.eci.pdsw.persistence.impl.mappers.EpsMapper">
-    
+    <resultMap type='Eps' id='EpsResult'>
+        <id property='nit' column='NIT' />  
+        <result property='nombre' column='NOMBRE' />
+    </resultMap>
   
 </mapper>
