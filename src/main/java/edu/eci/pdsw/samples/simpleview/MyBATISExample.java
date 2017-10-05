@@ -6,10 +6,13 @@
 package edu.eci.pdsw.samples.simpleview;
 
 import edu.eci.pdsw.persistence.impl.mappers.PacienteMapper;
+import edu.eci.pdsw.samples.entities.Consulta;
 import edu.eci.pdsw.samples.entities.Paciente;
 import java.io.IOException;
 import java.io.InputStream;
+
 import java.sql.SQLException;
+
 import java.util.List;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -75,6 +78,8 @@ public class MyBATISExample {
         
         Paciente x=pmapper.loadPacienteById(1026585445, "CC");
         System.out.println(x.getNombre());
+        Consulta y=new Consulta(java.sql.Date.valueOf("2018-12-13"),"dolor de vida",456456);
+        pmapper.insertConsulta(y, 1026585445, "CC", 4546456);
     }
     public void prueba(){
     }

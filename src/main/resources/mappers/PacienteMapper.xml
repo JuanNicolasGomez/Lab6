@@ -51,6 +51,10 @@
 
                 FROM  CM_PACIENTES as p left join CM_CONSULTAS as c on p.id=c.PACIENTES_id left join CM_EPS as e on p.eps_nit=e.nit
     </select>
+    <insert id="insertConsulta" useGeneratedKeys="true" keyProperty="con.id">
+        INSERT INTO CM_CONSULTAS (fecha_y_hora,resumen,costo,PACIENTES_id,PACIENTES_tipo_id)
+            VALUES(#{con.fechayHora},#{con.resumen},#{costoc},#{idp},#{tipoidp})
+    </insert>
     <resultMap type='Paciente' id='PacienteResult'>
         <id property='id' column='id'/>
         <id property='tipoId' column='tipo_id'/>
