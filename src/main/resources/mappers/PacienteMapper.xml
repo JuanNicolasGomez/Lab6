@@ -7,7 +7,26 @@
 <mapper namespace="edu.eci.pdsw.persistence.impl.mappers.PacienteMapper">
 
         
-    <select parameterType="map" id="loadPacienteByID" resultMap="PacienteResult">
+    <select parameterType="map" id="loadPacienteById" resultMap="PacienteResult">
+                select
+    
+                p.id,
+                p.tipo_id,
+                p.nombre,
+                p.fecha_nacimiento,
+
+
+                e.nombre as EPS_NOMBRE,
+                e.nit as EPS_NIT,
+
+                c.idCONSULTAS as CON_ID,
+                c.fecha_y_hora as CON_FECHA,
+                c.resumen as CON_RESUMEN,
+                c.costo as CON_COSTO
+
+
+                FROM  CM_PACIENTES as p left join CM_CONSULTAS as c on p.id=c.PACIENTES_id left join CM_EPS as e on p.eps_nit=e.nit
+                WHERE p.id = #{idp} AND p.tipo_id = #{tipoidp}            
 
     </select>
     
