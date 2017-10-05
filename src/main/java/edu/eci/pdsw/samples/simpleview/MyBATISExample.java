@@ -59,7 +59,19 @@ public class MyBATISExample {
         SqlSession sqlss = sessionfact.openSession();
         PacienteMapper pmapper=sqlss.getMapper(PacienteMapper.class);
         List<Paciente> pacientes=pmapper.loadPacientes();
-        System.out.println(pacientes.get(0).getNombre());
+        for(Paciente p: pacientes){
+            System.out.println(p.getId());
+            System.out.println(p.getTipoId());
+            System.out.println(p.getNombre());
+            System.out.println(p.getFechaNacimiento());
+            if(p.getEps() != null){
+                System.out.println(p.getEps().getNombre());
+            }
+            System.out.println("No de Consultas: " + p.getConsultas().size());
+            
+            
+        }
+        
     }
     public void prueba(){
     }
