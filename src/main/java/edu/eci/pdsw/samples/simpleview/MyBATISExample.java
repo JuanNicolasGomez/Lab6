@@ -6,13 +6,21 @@
 package edu.eci.pdsw.samples.simpleview;
 
 import edu.eci.pdsw.persistence.impl.mappers.PacienteMapper;
+<<<<<<< HEAD
 import edu.eci.pdsw.samples.entities.Consulta;
+=======
+import edu.eci.pdsw.samples.entities.Eps;
+>>>>>>> 2ca8381554690c3ed5fdb9851802335bef789401
 import edu.eci.pdsw.samples.entities.Paciente;
 import java.io.IOException;
 import java.io.InputStream;
 
 import java.sql.SQLException;
+<<<<<<< HEAD
 
+=======
+import java.sql.Date;
+>>>>>>> 2ca8381554690c3ed5fdb9851802335bef789401
 import java.util.List;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -73,13 +81,13 @@ public class MyBATISExample {
             }
             System.out.println("No de Consultas: " + p.getConsultas().size());
             
-            
         }
-        
-        Paciente x=pmapper.loadPacienteById(1026585445, "CC");
+        Paciente y = new Paciente(111, "CC", "Muppet", java.sql.Date.valueOf("1990-2-2"), new Eps("Compensar", "8456981")  );
+        pmapper.insertarPaciente(y);
+        Paciente x=pmapper.loadPacienteById(111, "CC");
         System.out.println(x.getNombre());
-        Consulta y=new Consulta(java.sql.Date.valueOf("2018-12-13"),"dolor de vida",456456);
-        pmapper.insertConsulta(y, 1026585445, "CC", 4546456);
+        Consulta z=new Consulta(java.sql.Date.valueOf("2018-12-13"),"dolor de vida",456456);
+        pmapper.insertConsulta(z, 1026585445, "CC", 4546456);
     }
     public void prueba(){
     }
