@@ -9,6 +9,10 @@
     <insert id="insertarPaciente">
 	INSERT INTO CM_PACIENTES (id, tipo_id, nombre, fecha_nacimiento, EPS_nit) VALUES(#{pac.id}, #{pac.tipoId}, #{pac.nombre}, #{pac.fechaNacimiento}, #{pac.eps.nit})
     </insert>
+    <update id="updatePaciente">
+        UPDATE CM_PACIENTES SET nombre=#{upac.nombre},fecha_nacimiento=#{upac.fechaNacimiento},EPS_nit=]#{upac.eps.nit}
+        WHERE id=#{upac.id} AND tipo_id=#{upac.tipoId}
+    </update>
         
     <select parameterType="map" id="loadPacienteById" resultMap="PacienteResult">
                 select

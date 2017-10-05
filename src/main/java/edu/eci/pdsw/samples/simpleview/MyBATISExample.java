@@ -22,6 +22,7 @@ import java.sql.SQLException;
 import java.sql.Date;
 
 import java.util.List;
+import java.util.Set;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -101,6 +102,25 @@ public class MyBATISExample {
         
         Consulta z=new Consulta(java.sql.Date.valueOf("2018-12-13"),"dolor de vida",5445);
         pmapper.insertConsulta(z, p.getId(), p.getTipoId(), 4546456);
+        sqlss.commit();
+    }
+    /**
+    * @obj Actualizar los datos básicos del paciente, con sus * respectivas consultas.
+    * @pre El paciente p ya existe
+    * @param pmap mapper a traves del cual se hará la operacion
+    * @param p paciente a ser registrado
+    */
+    public void actualizarPaciente(PacienteMapper pmap, Paciente p){
+        SqlSessionFactory sessionfact = getSqlSessionFactory();
+        SqlSession sqlss = sessionfact.openSession();
+        PacienteMapper pmapper=sqlss.getMapper(PacienteMapper.class);
+        pmapper.updatePaciente(p);
+        Set<Consulta> consp= p.getConsultas();
+        for (Consulta i: consp){
+            if (i.getId()==0){
+                pmap.insertConsulta(i,p.getId(),p.getTipoId(),i.getCosto());
+            }
+        }
         sqlss.commit();
     }
     
