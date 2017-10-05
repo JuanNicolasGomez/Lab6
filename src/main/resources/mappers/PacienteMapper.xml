@@ -34,12 +34,20 @@
     </select>
     <resultMap type='Paciente' id='PacienteResult'>
         <id property='id' column='id'/>
-        <id property='tipoid' column='tipo_id'/>
+        <id property='tipoId' column='tipo_id'/>
         <result property='nombre' column='nombre'/>
-        <result property='fechaNacimiento' column='fecha_nacimiento'/>  
-        <collection property='consultas' ofType='Consulta'resultmap = 'ConsultaResult' columnPrefix ='CON_'></collection>
-        <association property="eps" javaType="Eps"></association>      
+        <result property='fechaNacimiento' column='fecha_nacimiento'/> 
+        <association property="eps" javaType="Eps"></association>   
+        <collection property='consultas' ofType='Consulta' resultMap = 'ConsultaResult' columnPrefix ='CON_'></collection>
+            
     </resultMap>
+    
+    <resultMap type='Consulta' id='ConsultaResult'>
+        <id property='id' column='ID'/>
+        <result property='fechayHora' column='FECHA' />
+        <result property='resumen' column='RESUMEN' />
+        <result property='costo' column='COSTO' />      
+        </resultMap>
     
     
     

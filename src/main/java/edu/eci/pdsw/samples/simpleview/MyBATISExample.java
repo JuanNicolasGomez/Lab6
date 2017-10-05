@@ -55,7 +55,11 @@ public class MyBATISExample {
      * @throws SQLException 
      */
     public static void main(String args[]) throws SQLException {
-
+        SqlSessionFactory sessionfact = getSqlSessionFactory();
+        SqlSession sqlss = sessionfact.openSession();
+        PacienteMapper pmapper=sqlss.getMapper(PacienteMapper.class);
+        List<Paciente> pacientes=pmapper.loadPacientes();
+        System.out.println(pacientes.get(0).getNombre());
     }
     public void prueba(){
     }
