@@ -19,7 +19,7 @@ public interface PacienteMapper {
     
     public List<Paciente> loadPacientes();
     
-    public void insertarPaciente(Paciente p);
+    public void insertarPaciente(@Param("pac")Paciente p);
     
     public void insertConsulta(Consulta con,int idPaciente, String tipoid,int costoconsulta);
 
