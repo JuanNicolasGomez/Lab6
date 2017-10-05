@@ -58,10 +58,25 @@ public class MyBATISExample {
         SqlSessionFactory sessionfact = getSqlSessionFactory();
         SqlSession sqlss = sessionfact.openSession();
         PacienteMapper pmapper=sqlss.getMapper(PacienteMapper.class);
-        List<Paciente> pacientes=pmapper.loadPacientes();        
+
+        List<Paciente> pacientes=pmapper.loadPacientes();
+        for(Paciente p: pacientes){
+            System.out.println(p.getId());
+            System.out.println(p.getTipoId());
+            System.out.println(p.getNombre());
+            System.out.println(p.getFechaNacimiento());
+            if(p.getEps() != null){
+                System.out.println(p.getEps().getNombre());
+            }
+            System.out.println("No de Consultas: " + p.getConsultas().size());
+            
+            
+        }
         
-        
-    }    
+    }
+    public void prueba(){
+    }
+
     /**
      * Registra un nuevo paciente y sus respectivas consultas (si existiesen).
      * @param pmap mapper a traves del cual se hará la operacion
