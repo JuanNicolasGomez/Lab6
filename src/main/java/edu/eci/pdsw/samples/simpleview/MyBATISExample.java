@@ -73,6 +73,8 @@ public class MyBATISExample {
             
         }
         
+        Paciente x=pmapper.loadPacienteById(1026585445, "CC");
+        System.out.println(x.getNombre());
     }
     public void prueba(){
     }
