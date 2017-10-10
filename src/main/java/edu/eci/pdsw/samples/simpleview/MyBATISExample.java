@@ -5,6 +5,7 @@
  */
 package edu.eci.pdsw.samples.simpleview;
 
+import edu.eci.pdsw.persistence.impl.mappers.EPSMapper;
 import edu.eci.pdsw.persistence.impl.mappers.PacienteMapper;
 
 import edu.eci.pdsw.samples.entities.Consulta;
@@ -20,6 +21,7 @@ import java.sql.SQLException;
 
 
 import java.sql.Date;
+import java.util.LinkedHashSet;
 
 import java.util.List;
 import java.util.Set;
@@ -70,6 +72,7 @@ public class MyBATISExample {
         SqlSessionFactory sessionfact = getSqlSessionFactory();
         SqlSession sqlss = sessionfact.openSession();
         PacienteMapper pmapper=sqlss.getMapper(PacienteMapper.class);
+        EPSMapper emapper=sqlss.getMapper(EPSMapper.class);
 
         List<Paciente> pacientes=pmapper.loadPacientes();
         for(Paciente p: pacientes){
@@ -83,8 +86,22 @@ public class MyBATISExample {
             System.out.println("No de Consultas: " + p.getConsultas().size());
             
         }
-        Paciente y = new Paciente(111, "CC", "Muppet", java.sql.Date.valueOf("1990-2-2"), new Eps("Compensar", "8456981")  );
-        registrarNuevoPaciente(pmapper ,y);      
+        
+        
+        List<Eps> epses = emapper.loadAllEPS();
+            for(Eps e: epses){
+                System.out.println(e.getNit());
+
+            }
+         Paciente y = new Paciente(16519851, "CC", "TT", java.sql.Date.valueOf("1990-2-2"), new Eps("Compensar", "8456981") );
+         registrarNuevoPaciente(pmapper ,y);
+         y.setFechaNacimiento(java.sql.Date.valueOf("2000-2-2"));
+         Consulta z=new Consulta(java.sql.Date.valueOf("2018-12-13"),"dolor de toda la vida",5445);
+         LinkedHashSet<Consulta> t=new LinkedHashSet<Consulta>();
+         t.add(z);
+         y.setConsultas(t);
+         actualizarPaciente(pmapper,y);
+        
     }
     public void prueba(){
     }
@@ -110,7 +127,7 @@ public class MyBATISExample {
     * @param pmap mapper a traves del cual se hará la operacion
     * @param p paciente a ser registrado
     */
-    public void actualizarPaciente(PacienteMapper pmap, Paciente p){
+    public static void actualizarPaciente(PacienteMapper pmap, Paciente p){
         SqlSessionFactory sessionfact = getSqlSessionFactory();
         SqlSession sqlss = sessionfact.openSession();
         PacienteMapper pmapper=sqlss.getMapper(PacienteMapper.class);
@@ -121,6 +138,7 @@ public class MyBATISExample {
                 pmap.insertConsulta(i,p.getId(),p.getTipoId(),i.getCosto());
             }
         }
+        
         sqlss.commit();
     }
     
