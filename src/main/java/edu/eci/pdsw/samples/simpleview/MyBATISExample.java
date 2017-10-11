@@ -94,7 +94,7 @@ public class MyBATISExample {
 
             }
          Paciente y = new Paciente(16519851, "CC", "TT", java.sql.Date.valueOf("1990-2-2"), new Eps("Compensar", "8456981") );
-         registrarNuevoPaciente(pmapper ,y);
+         //registrarNuevoPaciente(pmapper ,y);
          y.setFechaNacimiento(java.sql.Date.valueOf("2000-2-2"));
          Consulta z=new Consulta(java.sql.Date.valueOf("2018-12-13"),"dolor de toda la vida",5445);
          LinkedHashSet<Consulta> t=new LinkedHashSet<Consulta>();
@@ -135,7 +135,8 @@ public class MyBATISExample {
         Set<Consulta> consp= p.getConsultas();
         for (Consulta i: consp){
             if (i.getId()==0){
-                pmap.insertConsulta(i,p.getId(),p.getTipoId(),i.getCosto());
+                System.out.println("looool");
+                pmapper.insertConsulta(i,p.getId(),p.getTipoId(),i.getCosto());
             }
         }
         
